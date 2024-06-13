@@ -13,6 +13,8 @@ function App() {
 }
 
 const StWrap = styled.div`
+  width: 90%;
+  margin: 0 auto;
   border: 1px solid red;
 `;
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 function HeaderTop() {
   return (
     <>
-      <StHeaderWrap className="right">
+      <StHeaderWrap>
         <li>회원가입</li>
         <StLine />
         <li>로그인</li>
@@ -16,18 +16,23 @@ function HeaderTop() {
 }
 
 const StHeaderWrap = styled.ul`
-  height: 50px;
-  font-size: 1.3rem;
+  height: 35px;
+  font-size: 1.2rem;
   display: flex;
+  justify-content: end;
   align-items: center;
-  background-color: red;
+  gap: 5px;
+
+  li {
+    cursor: pointer;
+  }
 `;
 
-const StLine = styled.div`
+export const StLine = styled.div`
   width: 1px;
-  height: 15px;
+  height: 17px;
+  background-color: #000;
   display: flex;
-  gap: 5px;
 `;
 
 export default HeaderTop;
