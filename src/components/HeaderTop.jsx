@@ -20,7 +20,7 @@ const StHeaderWrap = styled.ul`
   font-size: 1.3rem;
   display: flex;
   align-items: center;
-  background-color: pink;
+  background-color: red;
 `;
 
 const StLine = styled.div`
