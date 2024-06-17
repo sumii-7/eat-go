@@ -1,13 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 function HeaderTop() {
+  const navigate = useNavigate();
   return (
     <>
       <StHeaderWrap>
-        <li>회원가입</li>
+        <li
+          onClick={() => {
+            navigate("/SignUp");
+          }}
+        >
+          회원가입
+        </li>
         <StLine />
-        <li>로그인</li>
+        <li
+          onClick={() => {
+            navigate("/Login");
+          }}
+        >
+          로그인
+        </li>
         <StLine />
         <li>마이페이지</li>
       </StHeaderWrap>

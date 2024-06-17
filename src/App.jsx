@@ -1,12 +1,14 @@
 import "./reset.css";
-import Home from "./components/Home";
 import styled from "styled-components";
+import Router from "./shared/Router";
+import GlobalStyle from "./components/GlobalStyle";
 
 function App() {
   return (
     <>
+      <GlobalStyle />
       <StWrap>
-        <Home />
+        <Router />
       </StWrap>
     </>
   );
