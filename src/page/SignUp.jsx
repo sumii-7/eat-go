@@ -5,7 +5,9 @@ import supabase from "../supabaseClient";
 const SignUp = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const signUp = async (e) => {
+  const nicknameRef = useRef(null);
+
+  const signUpHandler = async (e) => {
     e.preventDefault();
     const { data, error } = await supabase.auth.signUp({
       email: emailRef.current.value,
@@ -17,11 +19,18 @@ const SignUp = () => {
     }
 
     console.log(data);
+    const { data: user } = await supabase.from("users").insert({
+      id: data.user.id,
+      created_at: data.user.created_at,
+      email: data.user.email,
+      nickname: nicknameRef.current.value,
+    });
   };
+
   return (
     <>
       <StSignUpWrap>
-        <StSignUpForm onSubmit={signUp}>
+        <StSignUpForm onSubmit={signUpHandler}>
           <StTitle>회원가입</StTitle>
           <StSignUpInput type="text" placeholder="아이디를 입력하세요." />
           <StSignUpInput
@@ -34,7 +43,11 @@ const SignUp = () => {
             placeholder="이메일를 입력하세요."
             ref={emailRef}
           />
-          <StSignUpInput type="text" placeholder="닉네임를 입력하세요." />
+          <StSignUpInput
+            type="text"
+            placeholder="닉네임를 입력하세요."
+            ref={nicknameRef}
+          />
           <StSignUpButton>회원가입</StSignUpButton>
         </StSignUpForm>
       </StSignUpWrap>

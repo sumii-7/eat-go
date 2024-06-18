@@ -6,7 +6,8 @@ const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const Login = async () => {
+  const LoginHandler = async (e) => {
+    e.preventDefault();
     const { data, error } = await supabase.auth.signInWithPassword({
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -22,7 +23,7 @@ const Login = () => {
   return (
     <>
       <StSignUpWrap>
-        <StSignUpForm onSubmit={Login}>
+        <StSignUpForm onSubmit={LoginHandler}>
           <StTitle>로그인</StTitle>
           <StSignUpInput
             type="text"
