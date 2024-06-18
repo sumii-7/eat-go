@@ -1,15 +1,39 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
+import supabase from "../supabaseClient";
 
 const SignUp = () => {
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const signUp = async (e) => {
+    e.preventDefault();
+    const { data, error } = await supabase.auth.signUp({
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    });
+
+    if (error) {
+      throw error;
+    }
+
+    console.log(data);
+  };
   return (
     <>
       <StSignUpWrap>
-        <StSignUpForm>
+        <StSignUpForm onSubmit={signUp}>
           <StTitle>회원가입</StTitle>
           <StSignUpInput type="text" placeholder="아이디를 입력하세요." />
-          <StSignUpInput type="password" placeholder="비밀번호를 입력하세요." />
-          <StSignUpInput type="email" placeholder="이메일를 입력하세요." />
+          <StSignUpInput
+            type="password"
+            placeholder="비밀번호를 입력하세요."
+            ref={passwordRef}
+          />
+          <StSignUpInput
+            type="email"
+            placeholder="이메일를 입력하세요."
+            ref={emailRef}
+          />
           <StSignUpInput type="text" placeholder="닉네임를 입력하세요." />
           <StSignUpButton>회원가입</StSignUpButton>
         </StSignUpForm>
