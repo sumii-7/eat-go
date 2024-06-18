@@ -19,6 +19,7 @@ const SignUp = () => {
     }
 
     console.log(data);
+
     const { data: user } = await supabase.from("users").insert({
       id: data.user.id,
       created_at: data.user.created_at,
